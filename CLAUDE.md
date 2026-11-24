@@ -64,13 +64,17 @@ It turns sleep *knowledge* into sleep *action*. Built by Ayan (developer) for th
 ## Design
 - Mobile-first, fast, calm, accessible (keyboard, labels, visible focus, `prefers-reduced-motion`).
 - Palette: navy `#27304F`, yellow `#F3DFA5`, sage `#D2DE9C`, coral `#FD5E48`, lilac `#E6C2DE`;
-  rounded cards, Inter font. Page background is deep night (`--color-abyss` #0A0E1C).
+  Inter font. Page background is deep night (`--color-abyss` #0A0E1C).
+- Cards/panels: `surface-night` utility (dark surface, hairline edge, faint top highlight) +
+  a soft glow in the card's palette colour; palette = light, not paint. No black outlines or
+  hard offset shadows (sticker style retired 2026-11-23 at Ayan's request). Primary button =
+  moon-yellow pill with dark text and soft glow, ≥ 44 px tall.
 - Hero = photo-real night sky, NOT cartoon (Ayan's feedback 2026-11-23): `components/sky/*` —
   canvas Milky Way + pinpoint stars, a few glowing DOM stars with faint spikes, layered Rockies,
   and `public/moon.webp` rendered by `frontend/scripts/render-moon.mts` (real maria/crater
   positions, deterministic). No outlines/cartoon strokes in the sky scene.
-- Contrast: coral on navy is 4.24:1 → never body text on navy; use coral as a fill with black text
-  (6.87:1) or for large text/icons only. Yellow/sage/lilac/white on navy all pass AA.
+- Contrast: coral is 4.24:1 on navy (fails AA body text) but 6.0:1 on the card surface; for
+  warnings use a coral tint/border with starlight text. Moon/sage/lilac/haze all pass AA on cards.
 - Home: 2 lines on what Sleep Smart MRU is, 3 tool cards, link to MRU Wellness Services
   (https://www.mtroyal.ca/CampusServices/WellnessServices/index.htm, Wellness Centre U216,
   wellness@mtroyal.ca). About page: class context + APA reference list.

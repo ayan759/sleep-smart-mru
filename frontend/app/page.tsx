@@ -1,47 +1,8 @@
+import { ToolCard } from "@/components/home/ToolCard";
+import { ForecastPreview, PlannerPreview, PollPreview } from "@/components/home/ToolPreviews";
 import { NightSky } from "@/components/sky/NightSky";
 
-type Tool = {
-  name: string;
-  description: string;
-  colour: string;
-};
-
-const SECONDARY_TOOLS: Tool[] = [
-  {
-    name: "Exam-crunch planner",
-    description: "Get a study plan for exam season that never drops your sleep below 7 hours.",
-    colour: "bg-sage",
-  },
-  {
-    name: "Sleep barrier poll",
-    description: "Tell MRU what cuts into your sleep. Anonymous, and it takes under a minute.",
-    colour: "bg-lilac",
-  },
-];
-
-function OpeningSoon() {
-  return (
-    <span className="inline-block shrink-0 whitespace-nowrap rounded-full border-2 border-ink bg-starlight px-3 py-0.5 text-xs font-semibold text-ink">
-      Opening soon
-    </span>
-  );
-}
-
-/** Decorative alertness curve on the Sleep Weather card (not data). */
-function ForecastSketch() {
-  return (
-    <svg aria-hidden="true" focusable="false" viewBox="0 0 280 72" className="h-16 w-full">
-      <path
-        d="M0 60 C 30 60, 40 26, 80 22 S 130 40, 160 44 S 210 12, 240 16 S 270 40, 280 52"
-        fill="none"
-        stroke="var(--color-ink)"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-      <rect x="140" y="0" width="44" height="72" rx="6" fill="var(--color-coral)" opacity="0.35" />
-    </svg>
-  );
-}
+const STATUS = "Opening soon";
 
 export default function Home() {
   return (
@@ -67,54 +28,50 @@ export default function Home() {
       </section>
 
       <div className="mx-auto w-full max-w-3xl px-5">
-        <section aria-label="Tools" className="mt-12 grid gap-6 sm:grid-cols-2">
-          <article className="rounded-[2rem] border-[2.5px] border-ink bg-moon p-6 text-ink shadow-sticker sm:col-span-2">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-2xl font-extrabold tracking-tight">Sleep Weather</h2>
-              <OpeningSoon />
-            </div>
-            <p className="mt-2 max-w-[48ch] text-base leading-relaxed">
-              Forecast tomorrow&apos;s alertness from your sleep and class schedule, and spot the
-              classes that land in a slump.
-            </p>
-            <div className="mt-4">
-              <ForecastSketch />
-            </div>
-          </article>
-
-          {SECONDARY_TOOLS.map((tool) => (
-            <article
-              key={tool.name}
-              className={`rounded-3xl border-[2.5px] border-ink ${tool.colour} p-5 text-ink shadow-sticker-sm`}
-            >
-              <h2 className="text-xl font-extrabold tracking-tight">{tool.name}</h2>
-              <p className="mt-2 leading-relaxed">{tool.description}</p>
-              <div className="mt-4">
-                <OpeningSoon />
-              </div>
-            </article>
-          ))}
+        <section aria-label="Tools" className="mt-14 grid gap-5 sm:grid-cols-2">
+          <ToolCard
+            featured
+            accent="moon"
+            title="Sleep Weather"
+            description="Forecast tomorrow's alertness from your sleep and class schedule, and spot the classes that land in a slump."
+            status={STATUS}
+            preview={<ForecastPreview />}
+          />
+          <ToolCard
+            accent="sage"
+            title="Exam-crunch planner"
+            description="Get a study plan for exam season that never drops your sleep below 7 hours."
+            status={STATUS}
+            preview={<PlannerPreview />}
+          />
+          <ToolCard
+            accent="lilac"
+            title="Sleep barrier poll"
+            description="Tell MRU what cuts into your sleep. Anonymous, and it takes under a minute."
+            status={STATUS}
+            preview={<PollPreview />}
+          />
         </section>
 
         <section
           aria-labelledby="wellness-title"
-          className="mt-12 rounded-2xl border border-starlight/20 bg-night-deep/60 p-5"
+          className="surface-night mt-5 rounded-[20px] p-5 sm:p-6"
         >
-          <h2 id="wellness-title" className="text-lg font-bold">
+          <h2 id="wellness-title" className="text-lg font-bold text-starlight">
             MRU Wellness Services
           </h2>
           <p className="mt-1 leading-relaxed text-haze">
             Free support for students at the Wellness Centre, room U216. Email{" "}
             <a
               href="mailto:wellness@mtroyal.ca"
-              className="font-semibold text-starlight underline underline-offset-4"
+              className="font-semibold text-starlight underline decoration-starlight/40 underline-offset-4 hover:decoration-starlight"
             >
               wellness@mtroyal.ca
             </a>{" "}
             or{" "}
             <a
               href="https://www.mtroyal.ca/CampusServices/WellnessServices/index.htm"
-              className="font-semibold text-starlight underline underline-offset-4"
+              className="font-semibold text-starlight underline decoration-starlight/40 underline-offset-4 hover:decoration-starlight"
             >
               visit Wellness Services online
             </a>

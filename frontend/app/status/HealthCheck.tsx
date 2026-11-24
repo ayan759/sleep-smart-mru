@@ -16,6 +16,19 @@ type CheckState =
   | { kind: "ok"; health: Health; roundTripMs: number }
   | { kind: "failed"; message: string };
 
+function StatusDot({ tone, label }: { tone: "ok" | "bad"; label: string }) {
+  const colour =
+    tone === "ok"
+      ? "bg-sage shadow-[0_0_8px_rgb(210_222_156/0.8)]"
+      : "bg-coral shadow-[0_0_8px_rgb(253_94_72/0.8)]";
+  return (
+    <span className="inline-flex items-center gap-2 font-semibold">
+      <span aria-hidden="true" className={`size-2 rounded-full ${colour}`} />
+      {label}
+    </span>
+  );
+}
+
 export function HealthCheck() {
   const [state, setState] = useState<CheckState>({ kind: "checking" });
 
@@ -48,37 +61,40 @@ export function HealthCheck() {
   }, [runCheck]);
 
   return (
-    <div className="mt-8 rounded-3xl border-[2.5px] border-ink bg-starlight p-5 text-ink shadow-sticker-sm">
-      <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3">
-        <dt className="font-semibold">Website</dt>
+    <div className="surface-night mt-8 rounded-3xl p-5 sm:p-6">
+      <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-starlight">
+        <dt className="font-medium text-haze">Website</dt>
         <dd>Running (you&apos;re reading it)</dd>
 
-        <dt className="font-semibold">Study planner</dt>
+        <dt className="font-medium text-haze">Study planner</dt>
         <dd aria-live="polite">
           {state.kind === "checking" && "Checking…"}
-          {state.kind === "ok" && "Running"}
-          {state.kind === "failed" && <span className="font-semibold">Not responding</span>}
+          {state.kind === "ok" && <StatusDot tone="ok" label="Running" />}
+          {state.kind === "failed" && <StatusDot tone="bad" label="Not responding" />}
         </dd>
 
         {state.kind === "ok" && (
           <>
-            <dt className="font-semibold">Python</dt>
+            <dt className="font-medium text-haze">Python</dt>
             <dd className="tabular">{state.health.python}</dd>
-            <dt className="font-semibold">OR-Tools</dt>
+            <dt className="font-medium text-haze">OR-Tools</dt>
             <dd className="tabular">{state.health.ortools}</dd>
-            <dt className="font-semibold">Solver test</dt>
+            <dt className="font-medium text-haze">Solver test</dt>
             <dd className="tabular">
               {state.health.cpsat_smoke === "OPTIMAL" ? "Passed" : state.health.cpsat_smoke} in{" "}
               {state.health.cpsat_solve_ms} ms
             </dd>
-            <dt className="font-semibold">Round trip</dt>
+            <dt className="font-medium text-haze">Round trip</dt>
             <dd className="tabular">{state.roundTripMs} ms</dd>
           </>
         )}
       </dl>
 
       {state.kind === "failed" && (
-        <p role="alert" className="mt-4 rounded-xl border-2 border-ink bg-coral px-3 py-2 font-medium text-ink">
+        <p
+          role="alert"
+          className="mt-4 rounded-xl border border-coral/40 bg-coral/10 px-3 py-2 font-medium text-starlight"
+        >
           {state.message}
         </p>
       )}
@@ -87,7 +103,7 @@ export function HealthCheck() {
         type="button"
         onClick={() => void runCheck()}
         disabled={state.kind === "checking"}
-        className="mt-5 rounded-full border-[2.5px] border-ink bg-moon px-5 py-2 font-bold text-ink shadow-sticker-sm transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:opacity-60"
+        className="mt-6 min-h-11 cursor-pointer rounded-full bg-moon px-6 py-2.5 font-semibold text-[#14182b] shadow-[0_0_28px_-6px_rgb(243_223_165/0.6)] transition hover:brightness-105 active:scale-[0.98] disabled:cursor-default disabled:opacity-60"
       >
         Check again
       </button>
