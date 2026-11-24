@@ -10,7 +10,7 @@ export default function Home() {
       <section aria-labelledby="hero-title" className="relative">
         <NightSky className="h-[clamp(540px,82svh,800px)]" />
         {/* Title rests on the dark foreground mountains. */}
-        <div className="relative z-10 mx-auto -mt-[clamp(170px,22svh,240px)] w-full max-w-3xl px-5">
+        <div className="relative z-10 mx-auto -mt-[clamp(170px,22svh,240px)] w-full max-w-3xl px-5 lg:max-w-6xl lg:px-10">
           <h1
             id="hero-title"
             className="text-[clamp(2.75rem,11vw,4.75rem)] font-black leading-[0.95] tracking-[-0.035em] [text-shadow:0_2px_24px_rgb(3_5_12/0.6)]"
@@ -27,8 +27,11 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-3xl px-5">
-        <section aria-label="Tools" className="mt-14 grid gap-5 sm:grid-cols-2">
+      <div className="mx-auto w-full max-w-3xl px-5 lg:max-w-6xl lg:px-10">
+        <section
+          aria-label="Tools"
+          className="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-12"
+        >
           <ToolCard
             featured
             accent="moon"

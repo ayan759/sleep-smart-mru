@@ -2,14 +2,17 @@ import Link from "next/link";
 
 export function SiteFooter() {
   return (
-    <footer className="mx-auto w-full max-w-3xl px-5 pb-10 pt-12 text-sm leading-relaxed text-haze">
+    <footer className="mx-auto w-full max-w-3xl px-5 pb-10 pt-12 lg:max-w-6xl lg:px-10 text-sm leading-relaxed text-haze">
       <p className="max-w-[62ch]">
         Sleep Smart MRU gives educational estimates, not medical advice. It doesn&apos;t diagnose
         sleep problems. For health concerns, talk to MRU Health Services or Wellness Services.
       </p>
       <p className="mt-3">
         A UGST 1002 class project at Mount Royal University.{" "}
-        <Link href="/status" className="underline decoration-haze/50 underline-offset-4 hover:text-starlight">
+        <Link
+          href="/status"
+          className="underline decoration-haze/50 underline-offset-4 hover:text-starlight"
+        >
           System check
         </Link>
       </p>

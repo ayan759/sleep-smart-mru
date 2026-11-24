@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "System check" };
 
 export default function StatusPage() {
   return (
-    <main className="mx-auto w-full max-w-3xl px-5 pt-10">
+    <main className="mx-auto w-full max-w-3xl px-5 pt-10 lg:max-w-6xl lg:px-10">
       <Link href="/" className="text-haze underline underline-offset-4 hover:text-starlight">
         Back to home
       </Link>

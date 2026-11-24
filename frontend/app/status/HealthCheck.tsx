@@ -61,7 +61,7 @@ export function HealthCheck() {
   }, [runCheck]);
 
   return (
-    <div className="surface-night mt-8 rounded-3xl p-5 sm:p-6">
+    <div className="surface-night mt-8 max-w-xl rounded-3xl p-5 sm:p-6">
       <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-starlight">
         <dt className="font-medium text-haze">Website</dt>
         <dd>Running (you&apos;re reading it)</dd>
