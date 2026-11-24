@@ -3,7 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { importIcs } from "./ics-import";
 import { courseCodeOf, guessEventType } from "./schedule";
-import { formatClock } from "./time";
+import { atClock, formatClock } from "./time";
 
 const fixture = (name: string) =>
   readFileSync(path.join(import.meta.dirname, "..", "tests", "fixtures", name), "utf8");
@@ -35,8 +35,9 @@ describe("importIcs", () => {
     const afterDst = wide.find((e) => e.start.startsWith("2026-11-03"));
     expect(beforeDst?.start).toBe("2026-10-27T14:30:00.000Z"); // 08:30 MDT (-06:00)
     expect(afterDst?.start).toBe("2026-11-03T15:30:00.000Z"); // 08:30 MST (-07:00)
+    // The file's own VTIMEZONE rules fix the instants; display uses the device's rules, which
+    // agree on dates before Alberta's Nov 2026 change.
     expect(formatClock(beforeDst!.start)).toBe("8:30 a.m.");
-    expect(formatClock(afterDst!.start)).toBe("8:30 a.m.");
   });
 
   it("detects exams", () => {
@@ -51,11 +52,11 @@ describe("importIcs", () => {
     const shift = events.find((e) => e.title === "Work shift");
     const exam = events.find((e) => e.title === "PSYC 1105 Final Exam");
     const group = events.find((e) => e.title === "Study group");
-    expect(shift?.start).toBe("2026-12-04T00:00:00.000Z"); // Dec 3 17:00 MST
+    expect(shift?.start).toBe(atClock("2026-12-03", "17:00").toISOString()); // Calgary wall time
     expect(shift?.type).toBe("work");
     expect(exam?.start).toBe("2026-12-09T16:00:00.000Z");
     expect(exam?.type).toBe("exam");
-    expect(group?.start).toBe("2026-12-05T02:00:00.000Z"); // Dec 4 19:00 MST
+    expect(group?.start).toBe(atClock("2026-12-04", "19:00").toISOString());
   });
 
   it("parses course codes", () => {

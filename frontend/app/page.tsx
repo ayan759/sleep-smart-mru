@@ -2,8 +2,6 @@ import { ToolCard } from "@/components/home/ToolCard";
 import { ForecastPreview, PlannerPreview, PollPreview } from "@/components/home/ToolPreviews";
 import { NightSky } from "@/components/sky/NightSky";
 
-const STATUS = "Opening soon";
-
 export default function Home() {
   return (
     <main className="w-full">
@@ -44,8 +42,9 @@ export default function Home() {
           <ToolCard
             accent="sage"
             title="Exam-crunch planner"
+            href="/plan"
             description="Get a study plan for exam season that never drops your sleep below 7 hours."
-            status={STATUS}
+            status="Open now"
             preview={<PlannerPreview />}
           />
           <ToolCard

@@ -15,6 +15,9 @@ ORTOOLS_IMPORT_MS = round((time.perf_counter() - _import_started) * 1000)
 
 from fastapi import APIRouter, FastAPI  # noqa: E402
 
+from .schemas import PlanRequest, PlanResponse  # noqa: E402
+from .solver import plan as solve_plan  # noqa: E402
+
 app = FastAPI(
     title="Sleep Smart MRU solver",
     docs_url="/api/py/docs",
@@ -60,6 +63,12 @@ def health() -> dict[str, object]:
         "cpsat_solve_ms": solve_ms,
         "ortools_import_ms": ORTOOLS_IMPORT_MS,
     }
+
+
+@router.post("/plan", response_model=PlanResponse)
+def plan(req: PlanRequest) -> PlanResponse:
+    """Build a study plan that never cuts sleep below the minimum (>= 7 h)."""
+    return solve_plan(req)
 
 
 app.include_router(router)
