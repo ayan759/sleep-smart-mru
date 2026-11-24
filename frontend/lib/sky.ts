@@ -4,4 +4,4 @@
 export const MOON_CENTER = { x: 0.74, y: 0.24 };
 
 /** How fast the looping sky drifts left, in CSS pixels per second (same on every screen). */
-export const SKY_SPEED_PX_PER_S = 12;
+export const SKY_SPEED_PX_PER_S = 20;
