@@ -1,5 +1,10 @@
 import { ToolRow } from "@/components/home/ToolRow";
-import { ForecastScreen, PlannerScreen, PollScreen } from "@/components/home/ToolScreens";
+import {
+  ForecastScreen,
+  GuideScreen,
+  PlannerScreen,
+  PollScreen,
+} from "@/components/home/ToolScreens";
 import { NightSky } from "@/components/sky/NightSky";
 
 export default function Home() {
@@ -47,6 +52,13 @@ export default function Home() {
             action="Answer the poll"
             href="/poll"
             screen={<PollScreen />}
+          />
+          <ToolRow
+            title="Sleep guide"
+            description="Habits that help and hurt, how a night of sleep works, how long caffeine lasts, and 20 studies to read."
+            action="Read the sleep guide"
+            href="/learn"
+            screen={<GuideScreen />}
           />
         </section>
 

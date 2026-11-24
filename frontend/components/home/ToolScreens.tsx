@@ -123,3 +123,30 @@ export function PollScreen() {
     </Frame>
   );
 }
+
+/** Sleep guide: one quiz card, answered, with the study behind it. */
+export function GuideScreen() {
+  return (
+    <Frame>
+      <div className="flex items-baseline justify-between text-sm">
+        <span className="font-semibold text-starlight">Good habit or bad habit?</span>
+        <span className="text-haze tabular">1 of 8</span>
+      </div>
+      <p className="mt-4 text-xl font-semibold leading-snug tracking-tight text-starlight">
+        Sleeping until noon on Saturday to catch up
+      </p>
+      <div className="mt-4 grid grid-cols-2 gap-2 text-sm font-semibold">
+        <span className="rounded-xl border border-white/10 px-3 py-2.5 text-center text-haze/60">
+          Good habit
+        </span>
+        <span className="rounded-xl border border-sage/60 bg-sage/[0.14] px-3 py-2.5 text-center text-starlight">
+          Bad habit
+        </span>
+      </div>
+      <p className="mt-4 text-sm leading-relaxed text-haze">
+        A big weekend shift works like weekly jet lag.{" "}
+        <span className="text-haze/80 underline underline-offset-2">Wittmann 2006</span>
+      </p>
+    </Frame>
+  );
+}

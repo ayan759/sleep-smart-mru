@@ -15,7 +15,18 @@ export function SiteFooter() {
         >
           Poll results
         </Link>
-        <span aria-hidden="true" className="mx-2 text-haze/40">|</span>
+        <span aria-hidden="true" className="mx-2 text-haze/40">
+          |
+        </span>
+        <Link
+          href="/learn"
+          className="underline decoration-haze/50 underline-offset-4 hover:text-starlight"
+        >
+          Sleep guide
+        </Link>
+        <span aria-hidden="true" className="mx-2 text-haze/40">
+          |
+        </span>
         <Link
           href="/status"
           className="underline decoration-haze/50 underline-offset-4 hover:text-starlight"
