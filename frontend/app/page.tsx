@@ -1,5 +1,5 @@
-import { ToolCard } from "@/components/home/ToolCard";
-import { ForecastPreview, PlannerPreview, PollPreview } from "@/components/home/ToolPreviews";
+import { ToolRow } from "@/components/home/ToolRow";
+import { ForecastScreen, PlannerScreen, PollScreen } from "@/components/home/ToolScreens";
 import { NightSky } from "@/components/sky/NightSky";
 
 export default function Home() {
@@ -26,56 +26,52 @@ export default function Home() {
       </section>
 
       <div className="mx-auto w-full max-w-3xl px-5 lg:max-w-6xl lg:px-10">
-        <section
-          aria-label="Tools"
-          className="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-12"
-        >
-          <ToolCard
-            featured
-            accent="moon"
+        <section aria-label="Tools" className="mt-16 lg:mt-24">
+          <ToolRow
             title="Sleep Weather"
+            description="Forecast tomorrow's alertness from your sleep and class schedule, and see which classes land in a slump."
+            action="Check tomorrow's forecast"
             href="/forecast"
-            description="Forecast tomorrow's alertness from your sleep and class schedule, and spot the classes that land in a slump."
-            status="Open now"
-            preview={<ForecastPreview />}
+            screen={<ForecastScreen />}
           />
-          <ToolCard
-            accent="sage"
+          <ToolRow
             title="Exam-crunch planner"
+            description="Get a study plan for exam season that works around your classes and never drops your sleep below 7 hours."
+            action="Build a study plan"
             href="/plan"
-            description="Get a study plan for exam season that never drops your sleep below 7 hours."
-            status="Open now"
-            preview={<PlannerPreview />}
+            screen={<PlannerScreen />}
           />
-          <ToolCard
-            accent="lilac"
+          <ToolRow
             title="Sleep barrier poll"
+            description="Tell MRU what cuts into your sleep. Three questions, anonymous, under a minute."
+            action="Answer the poll"
             href="/poll"
-            description="Tell MRU what cuts into your sleep. Anonymous, and it takes under a minute."
-            status="Open now"
-            preview={<PollPreview />}
+            screen={<PollScreen />}
           />
         </section>
 
         <section
           aria-labelledby="wellness-title"
-          className="surface-night mt-5 rounded-[20px] p-5 sm:p-6"
+          className="grid gap-3 border-t border-white/10 py-12 lg:grid-cols-12 lg:gap-16 lg:py-16"
         >
-          <h2 id="wellness-title" className="text-lg font-bold text-starlight">
+          <h2
+            id="wellness-title"
+            className="text-2xl font-semibold tracking-[-0.01em] text-starlight lg:col-span-5"
+          >
             MRU Wellness Services
           </h2>
-          <p className="mt-1 leading-relaxed text-haze">
+          <p className="max-w-[60ch] text-lg leading-relaxed text-haze lg:col-span-7">
             Free support for students at the Wellness Centre, room U216. Email{" "}
             <a
               href="mailto:wellness@mtroyal.ca"
-              className="font-semibold text-starlight underline decoration-starlight/40 underline-offset-4 hover:decoration-starlight"
+              className="font-medium text-starlight underline decoration-starlight/40 underline-offset-4 hover:decoration-starlight"
             >
               wellness@mtroyal.ca
             </a>{" "}
             or{" "}
             <a
               href="https://www.mtroyal.ca/CampusServices/WellnessServices/index.htm"
-              className="font-semibold text-starlight underline decoration-starlight/40 underline-offset-4 hover:decoration-starlight"
+              className="font-medium text-starlight underline decoration-starlight/40 underline-offset-4 hover:decoration-starlight"
             >
               visit Wellness Services online
             </a>
