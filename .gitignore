@@ -1,0 +1,28 @@
+# dependencies & builds
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# env & secrets (only the example is committed)
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel/
+
+# local-only reference PDFs (copyrighted)
+docs/sources/*
+!docs/sources/.gitkeep
+
+.DS_Store
+.vercel
+.env*

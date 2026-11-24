@@ -1,0 +1,13 @@
+{
+  "name": "sleep-smart-mru",
+  "private": true,
+  "description": "Sleep Smart MRU: UGST 1002 class project (Next.js + FastAPI on Vercel Services)",
+  "scripts": {
+    "dev:services": "vercel dev -L",
+    "lint": "npm --prefix frontend run lint && npm --prefix frontend run typecheck && npm run lint:py",
+    "lint:py": "cd backend && uv run python -m compileall -q app tests",
+    "test": "npm --prefix frontend test && npm run test:py",
+    "test:py": "cd backend && uv run --extra dev pytest -q",
+    "build": "npm --prefix frontend run build"
+  }
+}

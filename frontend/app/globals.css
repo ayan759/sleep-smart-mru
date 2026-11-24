@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/*
+ * Sleep Smart MRU design tokens.
+ * Palette comes from the group's slides; night-deep / night-soft are tints of the slide navy.
+ * Contrast (WCAG): moon/sage/lilac/starlight on night all pass AA for body text.
+ * Coral on night is 4.24:1 — use coral as a FILL behind ink text (6.87:1), never as body text on night.
+ */
+@theme {
+  --color-night: #27304f;
+  --color-night-deep: #1b2139;
+  --color-night-soft: #343e63;
+  --color-moon: #f3dfa5;
+  --color-sage: #d2de9c;
+  --color-coral: #fd5e48;
+  --color-lilac: #e6c2de;
+  --color-ink: #000000;
+  --color-starlight: #f7f5ff;
+  --color-haze: #c9cce3; /* muted text on night: 8.9:1 */
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Sticker style from the slides: black outline + hard offset shadow, no blur. */
+  --shadow-sticker: 5px 5px 0 0 var(--color-ink);
+  --shadow-sticker-sm: 3px 3px 0 0 var(--color-ink);
+}
+
+@layer base {
+  html {
+    background: var(--color-night-deep);
+    color-scheme: dark;
+  }
+
+  body {
+    background:
+      radial-gradient(120% 70% at 50% 0%, var(--color-night-soft) 0%, transparent 60%),
+      linear-gradient(180deg, var(--color-night) 0%, var(--color-night-deep) 100%);
+    background-attachment: fixed;
+    color: var(--color-starlight);
+    font-feature-settings: "cv11", "ss01"; /* Inter: single-storey a, open digits */
+  }
+
+  /* Times and counts line up in columns. */
+  time,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-moon);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* ---------- Motion: one orchestrated moonrise + a few twinkling stars ---------- */
+
+@keyframes moonrise {
+  from {
+    transform: rotate(-50deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes glow-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.moon-arm {
+  transform-box: view-box;
+  animation: moonrise 2.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.moon-glow {
+  animation: glow-in 2.6s ease-out 0.6s both;
+}
+
+.star-twinkle {
+  animation: twinkle 4.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon-arm,
+  .moon-glow,
+  .star-twinkle {
+    animation: none;
+  }
+}
