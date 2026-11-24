@@ -203,7 +203,7 @@ export function NightOfSleep() {
         An example night following the pattern described by the{" "}
         <a
           className="underline underline-offset-2 hover:text-starlight"
-          href="https://www.ninds.nih.gov/Disorders/Patient-Caregiver-Education/Understanding-Sleep"
+          href="https://www.ninds.nih.gov/health-information/public-education/brain-basics/brain-basics-understanding-sleep"
         >
           U.S. National Institutes of Health
         </a>

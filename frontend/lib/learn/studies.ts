@@ -264,8 +264,7 @@ export const STUDIES: Study[] = [
     found:
       "Knowing good sleep habits was related to practising them, and those practices were related to better sleep quality.",
     forYou: "Learning how sleep works is the first step, which is why this guide exists.",
-    url: "https://scholar.google.com/scholar?q=Brown+Buboltz+Soper+2002+sleep+hygiene+awareness+practices+sleep+quality+university+students",
-    linkLabel: "Find the study",
+    url: "https://doi.org/10.1080/08964280209596396",
     topics: ["programs", "students"],
   },
   {
@@ -304,7 +303,7 @@ export const STUDIES: Study[] = [
     found:
       "Adults should get 7 to 9 hours of good-quality sleep on a regular basis, with consistent bed and wake-up times.",
     forYou: "The target for students is 7 to 9 hours, at the same times every day.",
-    url: "https://csepguidelines.ca/adults-18-64/",
+    url: "https://doi.org/10.1139/apnm-2020-0467",
     linkLabel: "Read the guideline",
     topics: ["regularity"],
   },

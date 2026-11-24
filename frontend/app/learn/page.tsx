@@ -6,6 +6,7 @@ import { HabitQuiz } from "@/components/learn/HabitQuiz";
 import { NightOfSleep } from "@/components/learn/NightOfSleep";
 import { ResearchLibrary } from "@/components/learn/ResearchLibrary";
 import { SourceLinks } from "@/components/learn/SourceLinks";
+import { SectionHead } from "@/components/SectionHead";
 import { STUDIES } from "@/lib/learn/studies";
 
 export const metadata: Metadata = {
@@ -20,20 +21,6 @@ const JUMPS = [
   { href: "#caffeine", label: "Caffeine" },
   { href: "#research", label: "Research" },
 ];
-
-function SectionHead({ id, title, intro }: { id: string; title: string; intro: React.ReactNode }) {
-  return (
-    <div className="max-w-[62ch]">
-      <h2
-        id={id}
-        className="scroll-mt-8 text-[2rem] font-semibold leading-[1.1] tracking-[-0.02em] text-starlight sm:text-[2.5rem]"
-      >
-        {title}
-      </h2>
-      <p className="mt-3 text-lg leading-relaxed text-haze">{intro}</p>
-    </div>
-  );
-}
 
 export default function LearnPage() {
   return (

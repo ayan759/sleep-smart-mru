@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ReferenceList } from "@/components/ReferenceList";
+import { referencesByIds } from "@/lib/references";
 
 export const metadata: Metadata = {
   title: "How Sleep Weather works",
@@ -101,7 +103,7 @@ export default function HowItWorksPage() {
       </ul>
       <p className="mt-5 max-w-[62ch] leading-relaxed text-haze">
         Canadian guidelines recommend 7–9 hours of good-quality sleep for adults 18–64, with
-        consistent bed and wake times (CSEP, 2020). If you&apos;re regularly sleeping much less,{" "}
+        consistent bed and wake times (Ross et al., 2020). If you&apos;re regularly sleeping much less,{" "}
         <a
           className="font-semibold text-starlight underline underline-offset-4"
           href="https://www.mtroyal.ca/CampusServices/WellnessServices/index.htm"
@@ -112,53 +114,19 @@ export default function HowItWorksPage() {
       </p>
 
       <h2 className="mt-12 text-2xl font-bold tracking-tight text-starlight">References</h2>
-      <ol className="mt-4 grid gap-3 text-sm leading-relaxed text-haze [&>li]:pl-8 [&>li]:-indent-8">
-        <li>
-          Åkerstedt, T., &amp; Folkard, S. (1997). The three-process model of alertness and its
-          extension to performance, sleep latency, and sleep length.{" "}
-          <em>Chronobiology International, 14</em>(2), 115–123.
-        </li>
-        <li>
-          Åkerstedt, T., Folkard, S., &amp; Portin, C. (2004). Predictions from the three-process
-          model of alertness. <em>Aviation, Space, and Environmental Medicine, 75</em>(3, Suppl.),
-          A75–A83.
-        </li>
-        <li>
-          Borbély, A. A. (1982). A two process model of sleep regulation.{" "}
-          <em>Human Neurobiology, 1</em>
-          (3), 195–204.
-        </li>
-        <li>
-          Canadian Society for Exercise Physiology. (2020).{" "}
-          <em>Canadian 24-hour movement guidelines for adults aged 18–64 years</em>.
-        </li>
-        <li>
-          Daan, S., Beersma, D. G. M., &amp; Borbély, A. A. (1984). Timing of human sleep: Recovery
-          process gated by a circadian pacemaker. <em>American Journal of Physiology, 246</em>(2),
-          R161–R183.
-        </li>
-        <li>
-          Ingre, M., Van Leeuwen, W., Klemets, T., Ullvetter, C., Hough, S., Kecklund, G., Karlsson,
-          D., &amp; Åkerstedt, T. (2014). Validating and extending the three process model of
-          alertness in airline operations. <em>PLoS ONE, 9</em>(10), e108679.{" "}
-          <a
-            className="underline underline-offset-4"
-            href="https://doi.org/10.1371/journal.pone.0108679"
-          >
-            https://doi.org/10.1371/journal.pone.0108679
-          </a>
-        </li>
-        <li>
-          Roenneberg, T., Kuehnle, T., Pramstaller, P. P., Ricken, J., Havel, M., Guth, A., &amp;
-          Merrow, M. (2004). A marker for the end of adolescence. <em>Current Biology, 14</em>(24),
-          R1038–R1039.
-        </li>
-        <li>
-          Roenneberg, T., Wirz-Justice, A., &amp; Merrow, M. (2003). Life between clocks: Daily
-          temporal patterns of human chronotypes. <em>Journal of Biological Rhythms, 18</em>(1),
-          80–90.
-        </li>
-      </ol>
+      <ReferenceList
+        className="mt-4"
+        refs={referencesByIds([
+          "akerstedt-folkard-1997",
+          "akerstedt-2004",
+          "borbely-1982",
+          "csep-2020",
+          "daan-1984",
+          "ingre-2014",
+          "roenneberg-2004",
+          "roenneberg-2003",
+        ])}
+      />
     </main>
   );
 }

@@ -10,6 +10,15 @@ export function SiteFooter() {
       <p className="mt-3">
         A UGST 1002 class project at Mount Royal University.{" "}
         <Link
+          href="/about"
+          className="underline decoration-haze/50 underline-offset-4 hover:text-starlight"
+        >
+          About this project
+        </Link>
+        <span aria-hidden="true" className="mx-2 text-haze/40">
+          |
+        </span>
+        <Link
           href="/dashboard"
           className="underline decoration-haze/50 underline-offset-4 hover:text-starlight"
         >

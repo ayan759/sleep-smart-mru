@@ -8,7 +8,7 @@ Sleep Weather is a weather forecast for your brain. It predicts how alert you'll
 tomorrow from how you've slept and when your classes are. Then it warns you when an exam lands in a
 slump, so you can fix it tonight.
 
-**Why it fits our research:** most students already *know* they need 7–9 hours (CSEP, 2020). Our
+**Why it fits our research:** most students already *know* they need 7–9 hours (Ross et al., 2020). Our
 gap is knowing vs doing. Information alone rarely changes behaviour (Blunden et al., 2012), but
 short, personalized tools do (Hershner & O'Brien, 2018). Sleep Weather makes the advice personal:
 "*your* 8 a.m. midterm, *your* bedtime."

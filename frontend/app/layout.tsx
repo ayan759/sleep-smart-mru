@@ -8,17 +8,28 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const DESCRIPTION =
+  "Free sleep tools for Mount Royal University students: an alertness forecast, an exam study planner that protects sleep, an anonymous campus poll and a sleep guide.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sleep-smart-mru.vercel.app"),
   title: {
     default: "Sleep Smart MRU",
     template: "%s | Sleep Smart MRU",
   },
-  description:
-    "Free sleep tools for Mount Royal University students: an alertness forecast, an exam study planner that protects sleep, and an anonymous campus poll.",
+  description: DESCRIPTION,
+  applicationName: "Sleep Smart MRU",
+  openGraph: {
+    type: "website",
+    siteName: "Sleep Smart MRU",
+    title: "Sleep Smart MRU",
+    description: DESCRIPTION,
+    locale: "en_CA",
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#27304f",
+  themeColor: "#0a0e1c", // --color-abyss, the page background
   colorScheme: "dark",
 };
 
