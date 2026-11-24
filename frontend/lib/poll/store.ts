@@ -79,7 +79,7 @@ class SupabaseStore implements PollStore {
       .insert(row(pollId, dataset, deviceHash, a));
     if (!error) return "ok";
     if (error.code === "23505") return "duplicate";
-    throw new Error(`insert failed: ${error.code}`);
+    throw new Error(`insert failed: ${error.code} ${error.message}`);
   }
 
   async results(pollId: string, dataset: Dataset): Promise<PollResults> {
@@ -114,7 +114,10 @@ class SupabaseStore implements PollStore {
       p_window_seconds: windowSeconds,
       p_limit: limit,
     });
-    if (error) return true; // fail open: never block a classroom vote because the limiter hiccuped
+    if (error) {
+      console.error(`rate limit check failed: ${error.code} ${error.message}`);
+      return true; // fail open: never block a classroom vote because the limiter hiccuped
+    }
     return data === true;
   }
 

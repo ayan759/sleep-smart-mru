@@ -58,6 +58,8 @@ create index if not exists poll_responses_poll_dataset on public.poll_responses 
 
 alter table public.poll_responses enable row level security;
 revoke all on public.poll_responses from anon, authenticated;
+-- Newer projects don't auto-grant tables; the server's service role needs these explicitly.
+grant select, insert, delete on public.poll_responses to service_role;
 
 -- ------------------------------------------------------------------ rate limiting
 create table if not exists public.poll_rate_limits (
@@ -68,6 +70,7 @@ create table if not exists public.poll_rate_limits (
 );
 alter table public.poll_rate_limits enable row level security;
 revoke all on public.poll_rate_limits from anon, authenticated;
+grant select, insert, update, delete on public.poll_rate_limits to service_role;
 
 create or replace function public.poll_rate_hit(p_bucket text, p_window_seconds int, p_limit int)
 returns boolean

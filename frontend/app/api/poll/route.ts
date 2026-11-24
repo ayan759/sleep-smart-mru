@@ -42,7 +42,9 @@ export async function POST(request: Request) {
     );
     if (outcome === "duplicate") return json({ error: "already_submitted" }, 409);
     return json({ ok: true }, 201);
-  } catch {
+  } catch (err) {
+    // Logs the database error code/message only; never any answer data.
+    console.error("poll insert failed:", err instanceof Error ? err.message : "unknown");
     return json({ error: "server_error" }, 500);
   }
 }
