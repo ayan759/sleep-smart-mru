@@ -2,11 +2,13 @@
 
 /*
  * Sleep Smart MRU design tokens.
- * Palette comes from the group's slides; night-deep / night-soft are tints of the slide navy.
- * Contrast (WCAG): moon/sage/lilac/starlight on night all pass AA for body text.
+ * Palette comes from the group's slides; space / abyss are the deep night-sky tones of the hero.
+ * Contrast (WCAG): moon/sage/lilac/starlight/haze on abyss and night all pass AA for body text.
  * Coral on night is 4.24:1 — use coral as a FILL behind ink text (6.87:1), never as body text on night.
  */
 @theme {
+  --color-space: #03050c; /* top of the night sky */
+  --color-abyss: #0a0e1c; /* foreground mountains + page background */
   --color-night: #27304f;
   --color-night-deep: #1b2139;
   --color-night-soft: #343e63;
@@ -16,7 +18,7 @@
   --color-lilac: #e6c2de;
   --color-ink: #000000;
   --color-starlight: #f7f5ff;
-  --color-haze: #c9cce3; /* muted text on night: 8.9:1 */
+  --color-haze: #c9cce3; /* muted text: 12.4:1 on abyss */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
@@ -27,15 +29,12 @@
 
 @layer base {
   html {
-    background: var(--color-night-deep);
+    background: var(--color-abyss);
     color-scheme: dark;
   }
 
   body {
-    background:
-      radial-gradient(120% 70% at 50% 0%, var(--color-night-soft) 0%, transparent 60%),
-      linear-gradient(180deg, var(--color-night) 0%, var(--color-night-deep) 100%);
-    background-attachment: fixed;
+    background: linear-gradient(180deg, var(--color-abyss) 0%, var(--color-abyss) 55%, #11172d 100%);
     color: var(--color-starlight);
     font-feature-settings: "cv11", "ss01"; /* Inter: single-storey a, open digits */
   }
@@ -53,18 +52,69 @@
   }
 }
 
-/* ---------- Motion: one orchestrated moonrise + a few twinkling stars ---------- */
+/* ---------- Night scene ---------- */
 
-@keyframes moonrise {
-  from {
-    transform: rotate(-50deg);
+/* Bright star: a hot core, a soft coloured glow, optional diffraction spikes. */
+.bright-star {
+  position: absolute;
+  width: var(--core);
+  height: var(--core);
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: rgb(255 255 255);
+  box-shadow:
+    0 0 calc(var(--core) * 1.5) calc(var(--core) * 0.4) rgb(var(--star) / 0.9),
+    0 0 calc(var(--core) * 6) calc(var(--core) * 1.5) rgb(var(--star) / 0.28),
+    0 0 calc(var(--core) * 16) calc(var(--core) * 3) rgb(var(--star) / 0.08);
+  animation-name: scintillate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.bright-star__spikes,
+.bright-star__spikes::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--core) * 10);
+  height: 1px;
+  translate: -50% -50%;
+  background: linear-gradient(90deg, transparent, rgb(var(--star) / 0.32) 50%, transparent);
+}
+
+.bright-star__spikes::after {
+  content: "";
+  rotate: 90deg;
+}
+
+/* Gentle atmospheric scintillation: brightness flickers, nothing moves. */
+@keyframes scintillate {
+  0%,
+  100% {
+    opacity: 1;
   }
-  to {
-    transform: rotate(0deg);
+  35% {
+    opacity: 0.72;
+  }
+  55% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.8;
   }
 }
 
-@keyframes glow-in {
+/* The one orchestrated moment: the moon rises from behind the Rockies. */
+@keyframes moon-rise {
+  from {
+    transform: translate(-28%, 320%);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes halo-in {
   from {
     opacity: 0;
   }
@@ -73,33 +123,18 @@
   }
 }
 
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.9;
-  }
-  50% {
-    opacity: 0.25;
-  }
+.moon-rise {
+  animation: moon-rise 3.6s cubic-bezier(0.3, 0.55, 0.25, 1) 0.15s both;
 }
 
-.moon-arm {
-  transform-box: view-box;
-  animation: moonrise 2.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
-}
-
-.moon-glow {
-  animation: glow-in 2.6s ease-out 0.6s both;
-}
-
-.star-twinkle {
-  animation: twinkle 4.8s ease-in-out infinite;
+.moon-halo {
+  animation: halo-in 3.6s ease-out 0.8s both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .moon-arm,
-  .moon-glow,
-  .star-twinkle {
+  .moon-rise,
+  .moon-halo,
+  .bright-star {
     animation: none;
   }
 }

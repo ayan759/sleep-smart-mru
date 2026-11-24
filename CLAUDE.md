@@ -64,7 +64,11 @@ It turns sleep *knowledge* into sleep *action*. Built by Ayan (developer) for th
 ## Design
 - Mobile-first, fast, calm, accessible (keyboard, labels, visible focus, `prefers-reduced-motion`).
 - Palette: navy `#27304F`, yellow `#F3DFA5`, sage `#D2DE9C`, coral `#FD5E48`, lilac `#E6C2DE`;
-  black outlines, rounded cards, Inter font. Night-sky / "Sleep Weather" visual language.
+  rounded cards, Inter font. Page background is deep night (`--color-abyss` #0A0E1C).
+- Hero = photo-real night sky, NOT cartoon (Ayan's feedback 2026-11-23): `components/sky/*` —
+  canvas Milky Way + pinpoint stars, a few glowing DOM stars with faint spikes, layered Rockies,
+  and `public/moon.webp` rendered by `frontend/scripts/render-moon.mts` (real maria/crater
+  positions, deterministic). No outlines/cartoon strokes in the sky scene.
 - Contrast: coral on navy is 4.24:1 → never body text on navy; use coral as a fill with black text
   (6.87:1) or for large text/icons only. Yellow/sage/lilac/white on navy all pass AA.
 - Home: 2 lines on what Sleep Smart MRU is, 3 tool cards, link to MRU Wellness Services

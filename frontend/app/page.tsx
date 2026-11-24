@@ -1,5 +1,4 @@
-import { MoonriseHero } from "@/components/sky/MoonriseHero";
-import { Starfield } from "@/components/sky/Starfield";
+import { NightSky } from "@/components/sky/NightSky";
 
 type Tool = {
   name: string;
@@ -46,81 +45,83 @@ function ForecastSketch() {
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-3xl px-5">
-      <section aria-labelledby="hero-title" className="pt-6">
-        <div className="relative">
-          <Starfield />
-          <MoonriseHero />
+    <main className="w-full">
+      <section aria-labelledby="hero-title" className="relative">
+        <NightSky className="h-[clamp(540px,82svh,800px)]" />
+        {/* Title rests on the dark foreground mountains. */}
+        <div className="relative z-10 mx-auto -mt-[clamp(170px,22svh,240px)] w-full max-w-3xl px-5">
+          <h1
+            id="hero-title"
+            className="text-[clamp(2.75rem,11vw,4.75rem)] font-black leading-[0.95] tracking-[-0.035em] [text-shadow:0_2px_24px_rgb(3_5_12/0.6)]"
+          >
+            Sleep Smart MRU
+          </h1>
+          <p className="mt-5 max-w-[34ch] text-xl font-medium leading-snug text-starlight">
+            Free sleep tools for Mount Royal students.
+          </p>
+          <p className="mt-2 max-w-[52ch] text-lg leading-relaxed text-haze">
+            See how alert you&apos;ll be tomorrow, plan exam study without losing sleep, and tell
+            MRU what keeps you up.
+          </p>
         </div>
-        <h1
-          id="hero-title"
-          className="mt-6 text-[clamp(2.75rem,11vw,4.5rem)] font-black leading-[0.95] tracking-[-0.035em]"
-        >
-          Sleep Smart MRU
-        </h1>
-        <p className="mt-5 max-w-[34ch] text-xl font-medium leading-snug text-starlight">
-          Free sleep tools for Mount Royal students.
-        </p>
-        <p className="mt-2 max-w-[52ch] text-lg leading-relaxed text-haze">
-          See how alert you&apos;ll be tomorrow, plan exam study without losing sleep, and tell MRU
-          what keeps you up.
-        </p>
       </section>
 
-      <section aria-label="Tools" className="mt-12 grid gap-6 sm:grid-cols-2">
-        <article className="rounded-[2rem] border-[2.5px] border-ink bg-moon p-6 text-ink shadow-sticker sm:col-span-2">
-          <div className="flex items-start justify-between gap-4">
-            <h2 className="text-2xl font-extrabold tracking-tight">Sleep Weather</h2>
-            <OpeningSoon />
-          </div>
-          <p className="mt-2 max-w-[48ch] text-base leading-relaxed">
-            Forecast tomorrow&apos;s alertness from your sleep and class schedule, and spot the
-            classes that land in a slump.
-          </p>
-          <div className="mt-4">
-            <ForecastSketch />
-          </div>
-        </article>
-
-        {SECONDARY_TOOLS.map((tool) => (
-          <article
-            key={tool.name}
-            className={`rounded-3xl border-[2.5px] border-ink ${tool.colour} p-5 text-ink shadow-sticker-sm`}
-          >
-            <h2 className="text-xl font-extrabold tracking-tight">{tool.name}</h2>
-            <p className="mt-2 leading-relaxed">{tool.description}</p>
-            <div className="mt-4">
+      <div className="mx-auto w-full max-w-3xl px-5">
+        <section aria-label="Tools" className="mt-12 grid gap-6 sm:grid-cols-2">
+          <article className="rounded-[2rem] border-[2.5px] border-ink bg-moon p-6 text-ink shadow-sticker sm:col-span-2">
+            <div className="flex items-start justify-between gap-4">
+              <h2 className="text-2xl font-extrabold tracking-tight">Sleep Weather</h2>
               <OpeningSoon />
             </div>
+            <p className="mt-2 max-w-[48ch] text-base leading-relaxed">
+              Forecast tomorrow&apos;s alertness from your sleep and class schedule, and spot the
+              classes that land in a slump.
+            </p>
+            <div className="mt-4">
+              <ForecastSketch />
+            </div>
           </article>
-        ))}
-      </section>
 
-      <section
-        aria-labelledby="wellness-title"
-        className="mt-12 rounded-2xl border border-starlight/20 bg-night-deep/60 p-5"
-      >
-        <h2 id="wellness-title" className="text-lg font-bold">
-          MRU Wellness Services
-        </h2>
-        <p className="mt-1 leading-relaxed text-haze">
-          Free support for students at the Wellness Centre, room U216. Email{" "}
-          <a
-            href="mailto:wellness@mtroyal.ca"
-            className="font-semibold text-starlight underline underline-offset-4"
-          >
-            wellness@mtroyal.ca
-          </a>{" "}
-          or{" "}
-          <a
-            href="https://www.mtroyal.ca/CampusServices/WellnessServices/index.htm"
-            className="font-semibold text-starlight underline underline-offset-4"
-          >
-            visit Wellness Services online
-          </a>
-          .
-        </p>
-      </section>
+          {SECONDARY_TOOLS.map((tool) => (
+            <article
+              key={tool.name}
+              className={`rounded-3xl border-[2.5px] border-ink ${tool.colour} p-5 text-ink shadow-sticker-sm`}
+            >
+              <h2 className="text-xl font-extrabold tracking-tight">{tool.name}</h2>
+              <p className="mt-2 leading-relaxed">{tool.description}</p>
+              <div className="mt-4">
+                <OpeningSoon />
+              </div>
+            </article>
+          ))}
+        </section>
+
+        <section
+          aria-labelledby="wellness-title"
+          className="mt-12 rounded-2xl border border-starlight/20 bg-night-deep/60 p-5"
+        >
+          <h2 id="wellness-title" className="text-lg font-bold">
+            MRU Wellness Services
+          </h2>
+          <p className="mt-1 leading-relaxed text-haze">
+            Free support for students at the Wellness Centre, room U216. Email{" "}
+            <a
+              href="mailto:wellness@mtroyal.ca"
+              className="font-semibold text-starlight underline underline-offset-4"
+            >
+              wellness@mtroyal.ca
+            </a>{" "}
+            or{" "}
+            <a
+              href="https://www.mtroyal.ca/CampusServices/WellnessServices/index.htm"
+              className="font-semibold text-starlight underline underline-offset-4"
+            >
+              visit Wellness Services online
+            </a>
+            .
+          </p>
+        </section>
+      </div>
     </main>
   );
 }
