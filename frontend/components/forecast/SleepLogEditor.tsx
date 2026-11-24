@@ -11,7 +11,7 @@ const fmtHours = (h: number) => {
 };
 
 const inputClass =
-  "min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 text-starlight tabular [color-scheme:dark] focus-visible:border-moon/60";
+  "min-h-11 w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.04] px-3 text-starlight tabular [color-scheme:dark] focus-visible:border-moon/60";
 
 export function SleepLogEditor({
   log,
@@ -38,8 +38,8 @@ export function SleepLogEditor({
       <fieldset className="rounded-2xl border border-moon/20 bg-moon/[0.04] p-4">
         <legend className="px-1 text-sm font-semibold text-moon">Tonight&apos;s plan</legend>
         <div className="grid grid-cols-2 gap-3">
-          <label className="text-sm text-haze">
-            Bedtime tonight
+          <label className="min-w-0 text-sm text-haze">
+            Bedtime
             <input
               type="time"
               step={900}
@@ -48,8 +48,8 @@ export function SleepLogEditor({
               className={`${inputClass} mt-1`}
             />
           </label>
-          <label className="text-sm text-haze">
-            Wake up {formatDay(atClock(addDays(today, 1), "12:00"))}
+          <label className="min-w-0 text-sm text-haze">
+            Wake up
             <input
               type="time"
               step={900}
@@ -60,7 +60,7 @@ export function SleepLogEditor({
           </label>
         </div>
         <p className="mt-2 text-sm text-haze tabular">
-          That&apos;s {fmtHours(tonightHours)} of sleep.
+          That&apos;s {fmtHours(tonightHours)} of sleep, waking {formatDay(atClock(addDays(today, 1), "12:00"))}.
         </p>
       </fieldset>
 
@@ -83,7 +83,7 @@ export function SleepLogEditor({
                   {fmtHours(hours)}
                 </p>
               </div>
-              <label className="text-xs text-haze">
+              <label className="min-w-0 text-xs text-haze">
                 Bed
                 <input
                   type="time"
@@ -93,7 +93,7 @@ export function SleepLogEditor({
                   className={`${inputClass} mt-1`}
                 />
               </label>
-              <label className="text-xs text-haze">
+              <label className="min-w-0 text-xs text-haze">
                 Woke
                 <input
                   type="time"

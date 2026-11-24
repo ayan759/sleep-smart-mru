@@ -43,6 +43,19 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* iOS Safari/Chrome give date & time inputs an intrinsic minimum width and centre their
+     text, so they overflow narrow grid columns. Let them shrink and align like other fields. */
+  input[type="time"],
+  input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    min-width: 0;
+    max-width: 100%;
+  }
+  input::-webkit-date-and-time-value {
+    text-align: left;
+  }
+
   :focus-visible {
     outline: 3px solid var(--color-moon);
     outline-offset: 3px;

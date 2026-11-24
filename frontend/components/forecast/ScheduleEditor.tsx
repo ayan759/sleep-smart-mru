@@ -6,7 +6,7 @@ import { EVENT_TYPES, guessEventType, type EventType, type ScheduleEvent } from 
 import { addDays, atClock, edmontonDate, formatClock, formatDay } from "@/lib/time";
 
 const inputClass =
-  "min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 text-starlight [color-scheme:dark] focus-visible:border-moon/60";
+  "min-h-11 w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.04] px-3 text-starlight [color-scheme:dark] focus-visible:border-moon/60";
 
 const TYPE_DOT: Record<EventType, string> = {
   class: "bg-sage",
@@ -138,7 +138,7 @@ export function ScheduleEditor({
           Add an event by hand
         </h3>
         <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <label className="col-span-2 text-xs text-haze">
+          <label className="min-w-0 col-span-2 text-xs text-haze">
             Name
             <input
               value={draft.title}
@@ -147,7 +147,7 @@ export function ScheduleEditor({
               className={`${inputClass} mt-1`}
             />
           </label>
-          <label className="col-span-2 text-xs text-haze sm:col-span-2">
+          <label className="min-w-0 col-span-2 text-xs text-haze sm:col-span-2">
             Date
             <input
               type="date"
@@ -157,7 +157,7 @@ export function ScheduleEditor({
               className={`${inputClass} mt-1`}
             />
           </label>
-          <label className="text-xs text-haze">
+          <label className="min-w-0 text-xs text-haze">
             Starts
             <input
               type="time"
@@ -167,7 +167,7 @@ export function ScheduleEditor({
               className={`${inputClass} mt-1`}
             />
           </label>
-          <label className="text-xs text-haze">
+          <label className="min-w-0 text-xs text-haze">
             Ends
             <input
               type="time"
