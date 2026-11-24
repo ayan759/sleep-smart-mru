@@ -36,8 +36,9 @@ export default function Home() {
             featured
             accent="moon"
             title="Sleep Weather"
+            href="/forecast"
             description="Forecast tomorrow's alertness from your sleep and class schedule, and spot the classes that land in a slump."
-            status={STATUS}
+            status="Open now"
             preview={<ForecastPreview />}
           />
           <ToolCard

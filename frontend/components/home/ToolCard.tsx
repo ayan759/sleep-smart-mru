@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 export type Accent = "moon" | "sage" | "lilac";
@@ -25,13 +26,23 @@ type ToolCardProps = {
   preview: ReactNode;
   status: string;
   featured?: boolean;
+  /** When set, the whole card links here. */
+  href?: string;
 };
 
-export function ToolCard({ title, description, accent, preview, status, featured }: ToolCardProps) {
+export function ToolCard({
+  title,
+  description,
+  accent,
+  preview,
+  status,
+  featured,
+  href,
+}: ToolCardProps) {
   const a = ACCENTS[accent];
   return (
     <article
-      className={`surface-night relative isolate overflow-hidden ${
+      className={`surface-night relative isolate overflow-hidden transition-colors ${href ? "hover:border-white/20 focus-within:border-white/25" : ""} ${
         featured
           ? "rounded-[28px] p-6 sm:col-span-2 sm:p-8 lg:col-span-7 lg:row-span-2 lg:flex lg:flex-col lg:p-10"
           : "rounded-3xl p-5 sm:p-6 lg:col-span-5 lg:flex lg:flex-col"
@@ -54,7 +65,13 @@ export function ToolCard({ title, description, accent, preview, status, featured
             <h2
               className={`font-bold tracking-tight text-starlight ${featured ? "text-2xl sm:text-[1.75rem] lg:text-4xl" : "text-xl"}`}
             >
-              {title}
+              {href ? (
+                <Link href={href} className="after:absolute after:inset-0 after:content-['']">
+                  {title}
+                </Link>
+              ) : (
+                title
+              )}
             </h2>
             <span
               className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap ring-1 ring-inset ${a.pill} ${featured ? "sm:absolute sm:top-8 sm:right-8 lg:top-10 lg:right-10" : ""}`}

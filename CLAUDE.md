@@ -61,6 +61,13 @@ It turns sleep *knowledge* into sleep *action*. Built by Ayan (developer) for th
   pre-approved). Prefer custom SVG + CSS animation over icon/animation libraries.
 - Keep the alertness model and solver pure/deterministic (CP-SAT `num_workers = 1`).
 
+## Alertness model status (Phase 2)
+- `frontend/lib/alertness.ts`: S + C + W from the three-process model. Values verified 2026-11-23
+  against Ingre et al. (2014, PLoS ONE, open access); Åkerstedt & Folkard originals not readable.
+- Open TODO(verify): S-recovery breakpoint rule (bl = 12.2, unused); the 16.8 h acrophase's
+  reference mid-sleep (assumed 03:00 in `lib/chronotype.ts`); MSFsc formula text.
+- Two-process (Daan 1984) numbers are NOT used anywhere (unverified).
+
 ## Design
 - Mobile-first, fast, calm, accessible (keyboard, labels, visible focus, `prefers-reduced-motion`).
 - Palette: navy `#27304F`, yellow `#F3DFA5`, sage `#D2DE9C`, coral `#FD5E48`, lilac `#E6C2DE`;
