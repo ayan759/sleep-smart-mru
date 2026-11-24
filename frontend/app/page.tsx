@@ -33,6 +33,13 @@ export default function Home() {
       <div className="mx-auto w-full max-w-3xl px-5 lg:max-w-6xl lg:px-10">
         <section aria-label="Tools" className="mt-16 lg:mt-24">
           <ToolRow
+            title="Sleep guide"
+            description="Habits that help and hurt, how a night of sleep works, how long caffeine lasts, and 20 studies to read."
+            action="Read the sleep guide"
+            href="/learn"
+            screen={<GuideScreen />}
+          />
+          <ToolRow
             title="Sleep Weather"
             description="Forecast tomorrow's alertness from your sleep and class schedule, and see which classes land in a slump."
             action="Check tomorrow's forecast"
@@ -52,13 +59,6 @@ export default function Home() {
             action="Answer the poll"
             href="/poll"
             screen={<PollScreen />}
-          />
-          <ToolRow
-            title="Sleep guide"
-            description="Habits that help and hurt, how a night of sleep works, how long caffeine lasts, and 20 studies to read."
-            action="Read the sleep guide"
-            href="/learn"
-            screen={<GuideScreen />}
           />
         </section>
 
