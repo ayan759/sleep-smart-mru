@@ -152,10 +152,44 @@
   animation: halo-in 3.6s ease-out 0.8s both;
 }
 
+/* The sky drifts left forever: two identical tiles slide by exactly one tile, then repeat.
+   Duration is set per screen width by LoopingSky so the speed stays constant. */
+@keyframes sky-loop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.sky-loop {
+  animation: sky-loop 60s linear infinite;
+  will-change: transform;
+}
+
+/* The moon floats up and down in a slow, smooth wave (ease-in-out ≈ a sine). */
+@keyframes moon-bob {
+  0%,
+  100% {
+    transform: translate3d(0, -10px, 0);
+  }
+  50% {
+    transform: translate3d(0, 10px, 0);
+  }
+}
+
+.moon-bob {
+  animation: moon-bob 9s ease-in-out infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .moon-rise,
   .moon-halo,
-  .bright-star {
+  .bright-star,
+  .sky-loop,
+  .moon-bob {
     animation: none;
   }
 }
