@@ -1,77 +1,180 @@
+<div align="center">
+
+<img src="frontend/app/icon.png" width="88" alt="Sleep Smart MRU moon icon" />
+
 # Sleep Smart MRU
 
-A mobile-first web app that Mount Royal University students open from a poster QR code. It turns
-sleep *knowledge* into sleep *action*: an alertness forecast, an exam study planner that never cuts
-sleep below 7 hours, an anonymous sleep-barrier poll with a live dashboard, and a sleep guide.
+**Sleep tools for Mount Royal University students: an alertness forecast, a sleep-safe exam
+planner, and an anonymous campus poll. Built to turn sleep *knowledge* into sleep *action*.**
 
-Built for UGST 1002, *Advocating for Change* (Mount Royal University, Calgary, Fall 2026) by
-Avalin, Ayan, Liv and Ozzy. Ayan built the app.
+[**Live app → sleep-smart-mru.vercel.app**](https://sleep-smart-mru.vercel.app)
 
-**Live:** https://sleep-smart-mru.vercel.app
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![React 19](https://img.shields.io/badge/React_19-149ECA?logo=react&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)
+![Python](https://img.shields.io/badge/Python_3.12-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![OR-Tools](https://img.shields.io/badge/OR--Tools_CP--SAT-4285F4?logo=google&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?logo=supabase&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-80_passing-D2DE9C)
 
-> Sleep Smart MRU gives educational estimates, not medical advice. It doesn't diagnose sleep
-> problems or suggest medication. For health concerns, students can contact MRU Health Services or
-> [MRU Wellness Services](https://www.mtroyal.ca/CampusServices/WellnessServices/index.htm)
-> (Wellness Centre, U216).
+<img src="docs/screenshots/home.webp" alt="Sleep Smart MRU home page: a photo-real night sky with the moon over the Rockies" width="100%" />
 
-## What's in the app
+</div>
 
-| Route | What it does |
-| --- | --- |
-| `/` | Home: the night-sky hero and the four tools |
-| `/forecast` | **Sleep Weather.** Log 7 nights, plan tonight, add classes by hand or import an `.ics` calendar, and see tomorrow's alertness every 15 minutes with warnings and a "what if I sleep at…" slider |
-| `/forecast/how-it-works` | The alertness model in plain language, with references |
-| `/plan` | **Exam-crunch planner.** Up to 14 days, 30-minute slots, never under 7 hours of sleep; exports `.ics` and Google Calendar links |
-| `/poll` | **Sleep barrier poll.** Three questions, anonymous, under a minute |
-| `/dashboard` | Committee dashboard: live or demo results, passcode-protected reset and reseed |
-| `/present` | Full-screen projector view with a QR code to the poll and live updates |
-| `/learn` | **Sleep guide.** Habits that help and hurt, a quiz, a sleep-stage chart, a caffeine calculator and 20 studies |
-| `/about` | Class context, our pitch, privacy, and the full APA reference list |
-| `/status` | System check: confirms the web app and the solver are both running |
-| `/api/py/health`, `/api/py/plan` | Solver service (FastAPI) |
-| `/api/poll`, `/api/poll/results`, `/api/admin` | Poll routes (Next.js server routes) |
+## About
+
+At Mount Royal University, **33% of students said sleep hurt their academic performance**, alongside
+stress (46%) and anxiety (38%) (NCHA 2019, as reported by MRU Wellness Services, 2021). Most
+students already know they should sleep 7 to 9 hours. The research gap is *doing* it:
+information alone rarely changes sleep habits (Blunden et al., 2012), but short, personalized
+online tools can (Hershner & O'Brien, 2018).
+
+Sleep Smart MRU is my answer to that gap. It's a mobile-first web app that students open from a
+QR code on campus posters, with no account and no download. It was built for **UGST 1002,
+*Advocating for Change*** at Mount Royal University (Calgary, Fall 2026), a four-person group
+project with Avalin, Liv and Ozzy. **I designed and built the whole app**: the front end, the
+optimization service, the database and privacy design, testing and deployment.
+
+## What it does
+
+| Sleep Weather | Exam-crunch planner | Sleep guide | Caffeine calculator |
+| :---: | :---: | :---: | :---: |
+| <img src="docs/screenshots/phone-sleep-weather.webp" width="200" alt="Sleep Weather forecast on a phone" /> | <img src="docs/screenshots/phone-planner.webp" width="200" alt="Exam planner result on a phone" /> | <img src="docs/screenshots/phone-sleep-guide.webp" width="200" alt="Interactive sleep stage chart" /> | <img src="docs/screenshots/phone-caffeine.webp" width="200" alt="Caffeine calculator" /> |
+
+- **Sleep Weather: an alertness forecast.** Log a week of sleep and add classes by hand or import
+  an `.ics` calendar. The app forecasts tomorrow's alertness every 15 minutes with a published
+  sleep-science model, and warns you when an exam lands in a slump. A slider shows what a later
+  bedtime does to tomorrow, live.
+- **Exam-crunch planner.** Enter your exams and the study hours each needs. A constraint solver
+  builds a study plan around your classes and shifts that **never schedules less than 7 hours of
+  sleep**. If the load can't fit, it explains why and offers options instead of cutting sleep.
+  Plans export to `.ics` and Google Calendar.
+- **Sleep barrier poll and live dashboard.** Three anonymous questions that take under a minute.
+  Results stream live to a committee dashboard and a projector view, so MRU can see which
+  barriers to fix first.
+- **Sleep guide.** Habits that help and hurt, a quiz, an interactive night-of-sleep chart, a
+  caffeine half-life calculator, and 20 studies summarized in plain language, each linked to its
+  source.
+
+<table>
+  <tr>
+    <td width="62%"><img src="docs/screenshots/sleep-weather.webp" alt="Sleep Weather on desktop with an alertness chart and an exam warning" /></td>
+    <td width="38%"><img src="docs/screenshots/poll-live.webp" alt="Live poll results on the projector view, labelled Demo data" /></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="docs/screenshots/planner.webp" alt="Planner week view with study blocks and protected sleep" /></td>
+  </tr>
+</table>
+
+<sub>The poll screenshot uses the app's built-in, clearly labelled fake demo data.</sub>
+
+## Engineering highlights
+
+**Constraint optimization with a hard health guarantee.** The planner
+([`backend/app/solver.py`](backend/app/solver.py)) is a Google OR-Tools CP-SAT model over
+30-minute slots for up to 14 days. Every night gets exactly one contiguous sleep block of at least
+7 hours with a steady wake time, as a hard constraint that's never relaxed. The objective balances
+study placement, fragmentation and a consistent routine. When the input is infeasible, a separate
+diagnosis step ([`diagnose.py`](backend/app/diagnose.py)) reports the shortfall per course and
+concrete fixes (start earlier, raise the daily cap, move an optional event). A capacity pre-check
+rejects impossible loads instantly, and the solver runs deterministically on a single thread with
+a 5-second limit to fit inside a serverless request.
+
+**A scientific model, implemented as pure and tested code.**
+[`frontend/lib/alertness.ts`](frontend/lib/alertness.ts) implements the three-process model of
+alertness (sleep pressure, circadian rhythm, sleep inertia). Every numeric parameter carries a
+comment quoting its published source, and anything I couldn't verify is marked
+`TODO(verify)` instead of guessed. The model personalizes to the user's body-clock timing using
+the Munich ChronoType approach, and judges "low" against each user's own week instead of a
+fixed threshold.
+
+**Time zones and calendars done carefully.** Everything runs in `America/Edmonton` with
+offset-aware ISO strings. `.ics` import parses recurring events (RRULE, VTIMEZONE) entirely on
+the device with ical.js. While testing, the phone and the server turned out to ship different
+time-zone database versions that disagree about Alberta's offset, so the client now sends its
+own day boundaries to the solver. A regression test covers a 25-hour daylight-saving day.
+
+**Privacy by design for the poll.** No accounts, names, emails, free text or IP addresses.
+Writes go only through a Next.js server route holding the Supabase service-role key. Postgres
+row-level security blocks direct access, and the public reads only aggregate views that hide any
+breakdown with fewer than 10 people. Duplicate votes are limited by a hashed device token, and
+rate limiting uses an HMAC of the IP with a key that rotates daily. Live updates come from a
+count-only realtime table, so the browser never subscribes to response rows.
+
+**Two runtimes, one deploy.** A Next.js app and a Python FastAPI service ship as one Vercel
+project using Vercel Services, routed by path (`/api/py/*` → Python). The poll degrades safely:
+in-memory in local dev, and an explicit "not connected" state in production rather than silently
+dropping votes.
+
+**Quality.** 63 Vitest tests (model maths, calendar import, time zones, exports, poll
+validation and aggregation) and 17 pytest tests (sleep never under 7 h, no overlaps, required
+hours met, infeasible input explained, determinism, DST). TypeScript strict mode and ESLint. The UI is mobile-first and accessible: keyboard support, visible focus,
+WCAG AA contrast checked against the palette, screen-reader tables for charts, and
+`prefers-reduced-motion` respected.
+
+**Craft.** The night-sky hero is drawn on a canvas with procedural noise and a seamless looping
+starfield. The moon is rendered offline by a deterministic script with real maria and crater
+positions ([`render-moon.mts`](frontend/scripts/render-moon.mts)). All 30 research sources were
+checked against their Crossref and PubMed records before going into the app's APA reference list.
 
 ## Architecture
-
-One Vercel project using **Vercel Services (beta)**: a Next.js service and a Python service behind
-one domain. `vercel.json` sends `/api/py/*` to the solver and everything else to the web app.
 
 ```mermaid
 flowchart LR
   phone["Student's phone<br/>(browser)"]
-  storage[("localStorage<br/>ssm:v1:* sleep logs,<br/>schedules, plans")]
+  storage[("localStorage<br/>sleep logs, schedules,<br/>plans")]
 
-  subgraph vercel["Vercel project: sleep-smart-mru"]
+  subgraph vercel["Vercel project (Vercel Services)"]
     rewrites{{"vercel.json rewrites"}}
-    web["web service · frontend/<br/>Next.js 16 App Router<br/>Tailwind v4, Recharts, ical.js"]
-    solver["solver service · backend/<br/>FastAPI + OR-Tools CP-SAT<br/>Python 3.12, uv"]
+    web["web · frontend/<br/>Next.js 16 App Router<br/>Tailwind v4, Recharts, ical.js"]
+    solver["solver · backend/<br/>FastAPI + OR-Tools CP-SAT<br/>Python 3.12"]
   end
 
   subgraph supabase["Supabase"]
-    db[("Postgres<br/>poll_responses (RLS on)<br/>aggregate views, n ≥ 10")]
-    tick[("poll_tick<br/>count-only table<br/>for realtime")]
+    db[("Postgres<br/>poll_responses (RLS)<br/>aggregate views, n ≥ 10")]
+    tick[("poll_tick<br/>count-only table")]
   end
 
   phone <--> storage
-  phone -->|"/api/py/*"| rewrites
-  phone -->|"all other paths"| rewrites
+  phone --> rewrites
   rewrites -->|"/api/py/*"| solver
-  rewrites --> web
-  web -->|"/api/poll, /api/admin<br/>service-role key, server only"| db
+  rewrites -->|"everything else"| web
+  web -->|"server routes<br/>service-role key"| db
   db -->|"trigger"| tick
-  phone -.->|"realtime subscribe<br/>(anon key)"| tick
+  phone -.->|"realtime<br/>(anon key)"| tick
 ```
 
-- **No accounts.** Sleep logs, schedules and study plans stay in the browser's localStorage
-  (`ssm:v1:*`, validated on load). Only anonymous poll answers go to Supabase.
-- **Time zone.** Everything runs in `America/Edmonton` and stores ISO strings with offsets. The
-  planner sends the device's own day boundaries (`day_starts`) so phone and server agree even if
-  their time-zone databases differ.
-- **Poll writes** go only through the Next.js server route with the service-role key. The browser
-  reads aggregates only, and subscribes to the count-only `poll_tick` table to know when to refetch.
-- **Poll storage modes.** With Supabase keys set, votes go to Supabase. In local dev without keys
-  the poll uses memory. In production without keys it answers 503 `not_connected` and never drops
-  a vote silently.
+Personal data (sleep logs, schedules, plans) never leaves the device; it lives in validated,
+versioned localStorage. Only anonymous poll answers reach the database.
+
+## Tech stack
+
+| Layer | Tools |
+| --- | --- |
+| Front end | Next.js 16 (App Router, cache components), React 19, TypeScript, Tailwind CSS v4, Recharts, ical.js |
+| Optimization service | Python 3.12, FastAPI, Pydantic, Google OR-Tools CP-SAT, uv |
+| Data | Supabase Postgres with row-level security, SQL views, triggers and realtime |
+| Testing | Vitest, pytest, ESLint, TypeScript |
+| Hosting | Vercel (Services beta: Next.js and Python in one project) |
+
+## Repository layout
+
+```text
+frontend/            Next.js app
+  app/               routes: /, /forecast, /plan, /poll, /dashboard, /present, /learn, /about, /status, /api/*
+  components/        UI by feature (forecast, plan, poll, learn, sky, home)
+  lib/               pure logic + tests: alertness model, chronotype, ics import, time, plan, poll, references
+  scripts/           moon and icon renderers, demo-data seeder
+backend/             FastAPI + CP-SAT study planner
+  app/               main.py (routes), schemas.py, slots.py, solver.py, diagnose.py
+  tests/             pytest suite
+supabase/migrations/ poll schema, RLS, views, realtime trigger, grants
+docs/                proposal, presenter guide, demo script, Supabase setup, screenshots
+vercel.json          service definitions and path routing
+```
 
 ## Run it locally
 
@@ -83,129 +186,54 @@ git clone https://github.com/ayan759/sleep-smart-mru.git
 cd sleep-smart-mru
 npm --prefix frontend install
 (cd backend && uv sync --extra dev)
-cp .env.example frontend/.env.local   # then fill in values (see below)
-npm run dev:services                  # runs `vercel dev -L` → http://localhost:3000
+cp .env.example frontend/.env.local   # optional locally: without Supabase keys the poll uses memory
+npm run dev:services                  # both services at http://localhost:3000
 ```
 
-`npm run dev:services` runs both services together, which the planner needs. For front-end-only
-work, `npm --prefix frontend run dev` starts Next.js alone; the planner's solver calls won't work
-there. (Don't add a root `dev` script that calls `vercel dev`: the CLI detects the recursion.)
-
-To try it on a phone on the same Wi-Fi, open `http://<your-computer's-LAN-IP>:3000`.
-
-## Environment variables
-
-| Variable | Used by | Vercel type | Notes |
-| --- | --- | --- | --- |
-| `SUPABASE_URL` | server; handed to the browser for realtime | Config | Supabase → Project Settings → API |
-| `SUPABASE_ANON_KEY` | server; handed to the browser for realtime | Config | Newer Supabase dashboards call this the **publishable** key. Public by design; RLS protects the data |
-| `SUPABASE_SERVICE_ROLE_KEY` | server only | Secret | Newer dashboards call this the **secret** key. Never give it a `NEXT_PUBLIC_` prefix |
-| `ADMIN_PASSCODE` | server only | Secret | Protects the dashboard's reset and reload-demo buttons. Choose any long passphrase |
-
-- **Local:** put them in `frontend/.env.local` (under `vercel dev`, the Next.js service reads its
-  own folder's env file). The Supabase lines can stay empty locally; the poll then uses memory.
-- **Production:** Vercel → project `sleep-smart-mru` → Settings → Environment Variables.
-- `.env.example` lists them all. Never commit a real `.env*` file; `.gitignore` blocks them.
-
-### Supabase setup
-
-Follow [`docs/supabase-setup.md`](docs/supabase-setup.md). In short: create a project, run
-`supabase/migrations/0001_poll.sql` and then `0002_service_role_grants.sql` in the SQL Editor
-(paste the file *contents*), and add the four variables above. New Supabase projects need the
-explicit `service_role` grants in `0002`, or inserts fail with `42501 permission denied`.
-
-## Scripts
-
-Run from the repo root:
-
-| Command | What it does |
+| Command (repo root) | What it does |
 | --- | --- |
-| `npm run dev:services` | Both services locally with `vercel dev -L` |
-| `npm run lint` | ESLint + TypeScript check (frontend) and a Python compile check (backend) |
-| `npm test` | Vitest (`frontend/lib`) then pytest (`backend/tests`) |
+| `npm run dev:services` | Next.js and FastAPI together via `vercel dev -L` |
+| `npm run lint` | ESLint and TypeScript (front end), compile check (back end) |
+| `npm test` | Vitest, then pytest |
 | `npm run build` | Production build of the Next.js app |
 
-Helper scripts in `frontend/scripts/` (run from `frontend/`):
+### Environment variables
 
-- `node scripts/render-moon.mts` renders `public/moon.webp` (real maria and crater positions,
-  deterministic).
-- `node scripts/render-icons.mts` renders the favicon, `icon.png` and `apple-icon.png` from the moon.
-- `ADMIN_PASSCODE=… node scripts/seed-demo.mts [baseUrl]` reloads the fake **Demo data** poll
-  responses, the same as the dashboard button.
+| Variable | Scope | Purpose |
+| --- | --- | --- |
+| `SUPABASE_URL` | server, shared with browser for realtime | Supabase project URL |
+| `SUPABASE_ANON_KEY` | server, shared with browser for realtime | Publishable key; RLS protects the data |
+| `SUPABASE_SERVICE_ROLE_KEY` | **server only** | Secret key for poll writes; never `NEXT_PUBLIC_` |
+| `ADMIN_PASSCODE` | **server only** | Protects the dashboard's reset and demo-data tools |
 
-## Tests
+Database setup is in [`docs/supabase-setup.md`](docs/supabase-setup.md) (run the two SQL files
+in `supabase/migrations/`). Deploy with `vercel deploy --prod` from the repo root.
 
-- **Vitest** covers the alertness model (S, C, W, determinism), the sleep log and chronotype,
-  the forecast, `.ics` import, Edmonton time helpers, the planner request and calendar exports,
-  poll validation, aggregation and privacy helpers, the sleep guide data and caffeine maths, and
-  the APA reference formatting.
-- **pytest** covers the solver: sleep never under 7 hours with one block per night, required study
-  hours met before each exam, nothing overlapping, a steady wake time, no study in the hour before
-  bed, impossible loads returning an explanation (never a crash and never less sleep), deterministic
-  output, a 25-hour DST day, and the API's validation (no sleep minimum under 7 h, no window over
-  14 days).
+## Safety and privacy
 
-## Deploy
-
-Deploys are from the CLI, from the repo root (Vercel isn't connected to GitHub):
-
-```bash
-vercel deploy --prod
-```
-
-Vercel Services is in beta: re-check the current Vercel docs before changing `vercel.json`. Each
-service receives the original path, so every FastAPI route must include the `/api/py` prefix.
-Under Services, `/_next/image` isn't routed, so `next.config.ts` sets `images.unoptimized: true`.
-
-## Privacy
-
-- No names, emails, accounts, free-text answers or IP addresses are stored.
-- One response per device per poll: a random token in localStorage, stored on the server only as
-  a one-way hash.
-- Rate limiting uses an HMAC of the IP with a key that rotates daily; buckets are deleted after a
-  day. Limits are generous because a whole class shares MRU Wi-Fi.
-- Public reads see aggregate views only, and breakdowns appear only for groups of 10 or more.
-- Demo data is fake and always labelled "Demo data".
+- **Not a medical tool.** It gives educational estimates, never diagnoses or suggests medication,
+  and points students to MRU Health Services and Wellness Services. If someone logs under 5 hours
+  on most nights, a gentle note suggests support.
+- **The planner never schedules under 7 hours of sleep**, for any input.
+- **Anonymous poll:** one response per device (hashed token), no personal data, groups under 10
+  are hidden, and demo data is always labelled "Demo data".
 
 ## The science
 
-**Sleep Weather** uses the three-process model of alertness (Åkerstedt & Folkard, 1997): sleep
-pressure (S) and the body clock (C) from the two-process model (Borbély, 1982; Daan et al., 1984),
-plus sleep inertia (W). The equations and parameter values are the ones restated in the open-access
-paper by Ingre et al. (2014); every number in `frontend/lib/alertness.ts` has a comment quoting its
-source. The model is pure and deterministic, steps in 15-minute intervals, and maps alertness to a
-0–100 index with bands relative to each user's own week. Body-clock timing uses the Munich
-ChronoType Questionnaire approach (Roenneberg et al., 2003, 2004).
+Sleep Weather uses the three-process model of alertness (Åkerstedt & Folkard, 1997), built on
+the two-process model of sleep regulation (Borbély, 1982; Daan et al., 1984), with the equations
+and values restated by Ingre et al. (2014). Body-clock timing follows Roenneberg et al. (2003,
+2004). Sleep guidance follows the Canadian 24-Hour Movement Guidelines (Ross et al., 2020) and
+Health Canada's caffeine guidance. Three model details I couldn't confirm from the original papers
+are marked `TODO(verify)` in [`alertness.ts`](frontend/lib/alertness.ts) and
+[`chronotype.ts`](frontend/lib/chronotype.ts) rather than guessed.
 
-Still marked `TODO(verify)` in the code, because the original papers weren't readable online:
+<details>
+<summary><strong>Full reference list (APA 7, 30 sources)</strong></summary>
 
-1. The rule for when sleep recovery slows near the end of the night (breakpoint `bl = 12.2`). It is
-   **not** used; recovery is a single exponential.
-2. Which mid-sleep time the default 16.8 h body-clock peak assumes. `lib/chronotype.ts` assumes
-   03:00 (a typical 11 p.m. to 7 a.m. sleeper).
-3. The exact wording of the sleep-corrected mid-sleep (MSFsc) formula.
-
-**The planner** (`backend/app/solver.py`) is a CP-SAT model on 30-minute slots over at most 14
-days. Every night has exactly one sleep block of at least 7 hours with a steady wake time, and that
-is never relaxed. If the load can't fit, the API returns an explanation and options instead of
-cutting sleep. The solver runs deterministically (one thread, interleaved search) with a 5-second
-limit.
-
-**The guide** uses Health Canada's caffeine guidance (400 mg a day for adults; energy drinks are
-capped at 180 mg per serving) and 20 studies, each summarised in plain words with a link.
-
-**The case for the project.** 33% of MRU students said sleep hurt their academic performance,
-beside stress (46%) and anxiety (38%) (NCHA 2019, as reported by MRU Wellness Services, 2021).
-Adults need 7 to 9 hours on a consistent schedule (Ross et al., 2020). Sleep knowledge goes with
-better habits and better sleep (Brown et al., 2002; Kuhn et al., 2024), but information alone often
-doesn't change behaviour (Blunden et al., 2012), while a short, personalized online program did
-(50.3% vs 39.5% improved; Hershner & O'Brien, 2018).
-
-### References
-
-APA 7th edition. Generated from `frontend/lib/references.ts`, where each entry was checked against
-its Crossref and PubMed record (web pages against the page itself) on 2026-11-24. The same list is
-on the app's [About page](https://sleep-smart-mru.vercel.app/about#references).
+Generated from [`frontend/lib/references.ts`](frontend/lib/references.ts); each entry was checked
+against its Crossref and PubMed record (web pages against the page itself) on 2026-11-24. The same
+list is on the app's [About page](https://sleep-smart-mru.vercel.app/about#references).
 
 - Åkerstedt, T., & Folkard, S. (1997). The three-process model of alertness and its extension to performance, sleep latency, and sleep length. *Chronobiology International, 14*(2), 115–123. https://doi.org/10.3109/07420529709001149
 - Åkerstedt, T., Folkard, S., & Portin, C. (2004). Predictions from the three-process model of alertness. *Aviation, Space, and Environmental Medicine, 75*(3, Suppl.), A75–A83. https://pubmed.ncbi.nlm.nih.gov/15018267/
@@ -238,13 +266,20 @@ on the app's [About page](https://sleep-smart-mru.vercel.app/about#references).
 - Wittmann, M., Dinich, J., Merrow, M., & Roenneberg, T. (2006). Social jetlag: Misalignment of biological and social time. *Chronobiology International, 23*(1–2), 497–509. https://doi.org/10.1080/07420520500545979
 - Yoo, S.-S., Gujar, N., Hu, P., Jolesz, F. A., & Walker, M. P. (2007). The human emotional brain without sleep—A prefrontal amygdala disconnect. *Current Biology, 17*(20), R877–R878. https://doi.org/10.1016/j.cub.2007.08.007
 
-The MRU figures (NCHA 2019, as reported by MRU Wellness Services, 2021) come from the project
-brief; we couldn't find a public copy of that report to link to.
+The MRU figures are cited as NCHA 2019, as reported by MRU Wellness Services (2021); we couldn't
+find a public copy of that report to link to.
+
+</details>
 
 ## Project docs
 
-- [`docs/step-0-proposal.md`](docs/step-0-proposal.md): the original plan
-- [`docs/sleep-weather-presenter-guide.md`](docs/sleep-weather-presenter-guide.md): how to explain
-  Sleep Weather in the presentation
+- [`docs/step-0-proposal.md`](docs/step-0-proposal.md): the original plan and scope
+- [`docs/sleep-weather-presenter-guide.md`](docs/sleep-weather-presenter-guide.md): explaining
+  the forecast to a non-technical audience
 - [`docs/demo-script.md`](docs/demo-script.md): the 3-minute live demo
 - [`docs/supabase-setup.md`](docs/supabase-setup.md): database setup
+
+## Team
+
+Built for UGST 1002, *Advocating for Change*, at Mount Royal University by **Avalin, Liv, Ayan
+and Ozzy**. App design and development: **Ayan** ([@ayan759](https://github.com/ayan759)).
