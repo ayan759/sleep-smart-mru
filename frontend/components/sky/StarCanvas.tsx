@@ -3,9 +3,7 @@
 import { useEffect, useRef } from "react";
 import { createNoise3 } from "@/lib/noise";
 import { mulberry32 } from "@/lib/random";
-
-/** Moon centre in the scene, as fractions of width/height (kept in sync with RisingMoon). */
-export const MOON_CENTER = { x: 0.74, y: 0.24 };
+import { MOON_CENTER } from "@/lib/sky";
 
 // Real star colours by temperature: blue-white, white, yellow-white, orange (rare).
 const STAR_COLOURS: [number, number, number][] = [

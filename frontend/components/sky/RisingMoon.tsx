@@ -1,16 +1,18 @@
 import Image from "next/image";
+import { MOON_CENTER } from "@/lib/sky";
 import moon from "@/public/moon.webp";
 
 /**
  * Photo-style moon (rendered by scripts/render-moon.mts) with its light scattering into the
  * sky. Rises from behind the mountains once on load; static under reduced motion.
- * Its centre matches MOON_CENTER in StarCanvas (74% across, 24% down).
+ * Its centre is MOON_CENTER (lib/sky.ts), shared with the star field's moonlight wash.
  */
 export function RisingMoon() {
   return (
     <div
       aria-hidden="true"
-      className="moon-rise pointer-events-none absolute left-[74%] top-[24%] w-[clamp(120px,36vw,230px)] -translate-x-1/2 -translate-y-1/2"
+      className="moon-rise pointer-events-none absolute w-[clamp(120px,36vw,230px)] -translate-x-1/2 -translate-y-1/2"
+      style={{ left: `${MOON_CENTER.x * 100}%`, top: `${MOON_CENTER.y * 100}%` }}
     >
       {/* Wide, faint scattering halo, then a tighter bright glow. */}
       <div className="moon-halo absolute left-1/2 top-1/2 aspect-square w-[420%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(190_205_255/0.09)_0%,rgb(150_170_240/0.035)_28%,transparent_62%)]" />
