@@ -159,3 +159,14 @@
     animation: none;
   }
 }
+
+/* Poll "thank you": one soft burst of light on arrival. */
+.poll-thanks-glow {
+  background: radial-gradient(60% 55% at 50% 30%, rgb(230 194 222 / 0.22), transparent 70%);
+  animation: halo-in 1.4s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .poll-thanks-glow {
+    animation: none;
+  }
+}

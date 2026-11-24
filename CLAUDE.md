@@ -68,6 +68,12 @@ It turns sleep *knowledge* into sleep *action*. Built by Ayan (developer) for th
   reference mid-sleep (assumed 03:00 in `lib/chronotype.ts`); MSFsc formula text.
 - Two-process (Daan 1984) numbers are NOT used anywhere (unverified).
 
+## Poll status (Phase 3)
+- Storage: `frontend/lib/poll/store.ts` → Supabase when SUPABASE_URL/ANON/SERVICE_ROLE are set;
+  in-memory ONLY in local dev; production without keys returns 503 "not_connected" (never drops votes).
+- Schema: `supabase/migrations/0001_poll.sql` (run in Supabase SQL editor). Setup: `docs/supabase-setup.md`.
+- Local dev passcode lives in `frontend/.env.local` (Next service reads its own env file under vercel dev).
+
 ## Design
 - Mobile-first, fast, calm, accessible (keyboard, labels, visible focus, `prefers-reduced-motion`).
 - Palette: navy `#27304F`, yellow `#F3DFA5`, sage `#D2DE9C`, coral `#FD5E48`, lilac `#E6C2DE`;

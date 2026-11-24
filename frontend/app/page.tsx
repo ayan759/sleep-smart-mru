@@ -51,8 +51,9 @@ export default function Home() {
           <ToolCard
             accent="lilac"
             title="Sleep barrier poll"
+            href="/poll"
             description="Tell MRU what cuts into your sleep. Anonymous, and it takes under a minute."
-            status={STATUS}
+            status="Open now"
             preview={<PollPreview />}
           />
         </section>
