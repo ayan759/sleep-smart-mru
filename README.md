@@ -7,7 +7,9 @@
 **Sleep tools for Mount Royal University students: an alertness forecast, a sleep-safe exam
 planner, and an anonymous campus poll. Built to turn sleep *knowledge* into sleep *action*.**
 
-[**Live app → sleep-smart-mru.vercel.app**](https://sleep-smart-mru.vercel.app)
+### [▶ Try it live: sleep-smart-mru.vercel.app](https://sleep-smart-mru.vercel.app)
+
+Launched to MRU students in November 2026 · works on any phone or laptop · no account or download
 
 ![Next.js](https://img.shields.io/badge/Next.js_16-000000?logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
@@ -37,6 +39,24 @@ QR code on campus posters, with no account and no download. It was built for **U
 *Advocating for Change*** at Mount Royal University (Calgary, Fall 2026), a four-person group
 project with Avalin, Liv and Ozzy. **I designed and built the whole app**: the front end, the
 optimization service, the database and privacy design, testing and deployment.
+
+**It's live and in real use.** We launched it to Mount Royal students in November 2026, and
+students have been using it since launch.
+
+## Try it yourself
+
+Open **[sleep-smart-mru.vercel.app](https://sleep-smart-mru.vercel.app)** on your phone or
+laptop. There's no sign-up, and everything you enter stays in your own browser except the
+anonymous poll answers.
+
+| Tool | Link | What to try |
+| --- | --- | --- |
+| Sleep guide | [/learn](https://sleep-smart-mru.vercel.app/learn) | Take the habit quiz, then check the caffeine calculator |
+| Sleep Weather | [/forecast](https://sleep-smart-mru.vercel.app/forecast) | Add an exam for tomorrow morning and drag the bedtime slider |
+| Exam-crunch planner | [/plan](https://sleep-smart-mru.vercel.app/plan) | Add two exams and build a plan; try a study load that can't fit |
+| Sleep barrier poll | [/poll](https://sleep-smart-mru.vercel.app/poll) | Look at the three questions; it's for MRU students, so please don't submit, to keep the results real |
+| Live dashboard | [/dashboard](https://sleep-smart-mru.vercel.app/dashboard) | See the poll results update live |
+| How the forecast works | [/forecast/how-it-works](https://sleep-smart-mru.vercel.app/forecast/how-it-works) | The model, its parameters and their sources |
 
 ## What it does
 
